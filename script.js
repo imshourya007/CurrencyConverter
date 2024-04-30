@@ -1,10 +1,23 @@
-const baseURL = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@2024-04-29/v1/currencies"
+//const baseURL = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@2024-04-29/v1/currencies"
 
 const dropdowns = document.querySelectorAll(".dropdown select");
 const btn = document.querySelector("form button");
 const fromCurr = document.querySelector(".from select");
 const toCurr = document.querySelector(".to select")
 const msg = document.querySelector(".msg");
+
+function getFormattedDate() {
+  let currentDate = new Date();
+  let year = currentDate.getFullYear();  
+  let month = String(currentDate.getMonth() + 1).padStart(2, '0');
+  let day = String(currentDate.getDate()).padStart(2, '0');
+  let formattedDate = `${year}-${month}-${day}`;
+  return formattedDate;
+}
+
+let todayDate = getFormattedDate();
+
+const baseURL = `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@${todayDate}/v1/currencies`;
 
 
 for (let select of dropdowns) {
