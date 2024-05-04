@@ -1,14 +1,15 @@
 //const baseURL = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@2024-04-29/v1/currencies"
 
 const dropdowns = document.querySelectorAll(".dropdown select");
-const btn = document.querySelector("form button");
+const btn = document.querySelector(".exchange");
 const fromCurr = document.querySelector(".from select");
 const toCurr = document.querySelector(".to select")
 const msg = document.querySelector(".msg");
+const btnSwap = document.querySelector("#swapButton");
 
 function getFormattedDate() {
   let currentDate = new Date();
-  let year = currentDate.getFullYear();  
+  let year = currentDate.getFullYear();
   let month = String(currentDate.getMonth() + 1).padStart(2, '0');
   let day = String(currentDate.getDate()).padStart(2, '0');
   let formattedDate = `${year}-${month}-${day}`;
@@ -66,6 +67,16 @@ const updateFlag = (element) => {
 
 btn.addEventListener("click", (evt) => {
   evt.preventDefault(); // prevents the default behaviour of the button(which is to refresh the page)
+  updateExchageRate();
+});
+
+btnSwap.addEventListener("click", (evt) => {
+  evt.preventDefault();
+  let temp = fromCurr.value;
+  fromCurr.value = toCurr.value;
+  toCurr.value = temp;
+  updateFlag(fromCurr);
+  updateFlag(toCurr);
   updateExchageRate();
 });
 
